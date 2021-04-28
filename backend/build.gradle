@@ -2,9 +2,10 @@ plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.1.1"
 }
 
-group = 'com.mingeso'
+group = 'com.MINGESO'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -13,8 +14,16 @@ repositories {
 }
 
 dependencies {
+	implementation'com.google.code.gson:gson:2.8.6'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'junit:junit:4.12'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile 'org.springframework.boot:spring-boot-starter-validation'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testRuntime('org.springframework.boot:spring-boot-starter-test')
 }
 
 test {

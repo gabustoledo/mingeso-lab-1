@@ -1,27 +1,35 @@
 import React, { Component } from "react";
 import axios from "axios"
 
-class Factorial extends Component {
+class Operaciones extends Component {
     constructor(){
         super();
         this.state = {
-            numero: "",
+            primerNumero: "",
+            segundoNumero: "",
             resultado: ""
         };
     }
 
 
-    setNumero = e =>{
+    setPrimerNumero = e =>{
         const { value } = e.target
         this.setState({
-            numero : value
+            primerNumero : value
+        })
+    }
+
+    setSegundoNumero = e =>{
+        const { value } = e.target
+        this.setState({
+            segundoNumero : value
         })
     }
 
     handleSumbit = e =>{
         e.preventDefault();
         axios
-            .post("http://localhost:1818/factorial", {operando: this.state.numero})
+            .post("http://localhost:8080/operaciones/suma", {primerNumero: this.state.primerNumero,segundoNumero: this.state.segundoNumero})
             .then((response) => {
                 this.setState({resultado: response.data.resultado})
             })
@@ -34,11 +42,15 @@ class Factorial extends Component {
             <div className="factorial">
                 <div className="card" style={{ maxWidth: '22rem'}}>
                     <div className="card-body" onSubmit={this.handleSumbit} >
-                        <h5 className="card-tittle text-center mb-4"> Factorial </h5>
+                        <h5 className="card-tittle text-center mb-4"> Suma </h5>
                         <form>
                             <div className="form-group">
-                                <label> Operando </label>
-                                <input className="form-control" placeholder="Numero" defaultValue={this.state.numero} onChange={this.setNumero} />
+                                <label> Primer Numero </label>
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.primerNumero} onChange={this.setPrimerNumero} />
+                            </div>
+                            <div className="form-group">
+                                <label> Segundo Numero </label>
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.segundoNumero} onChange={this.setSegundoNumero} />
                             </div>
                             <div className ="form-group">
                                 <label> Resultado </label>  
@@ -54,4 +66,4 @@ class Factorial extends Component {
     }
 }
 
-export default Factorial;
+export default Operaciones;

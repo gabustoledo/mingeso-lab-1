@@ -1,5 +1,5 @@
 import './App.css';
-import Factorial from './Factorial.js'
+import Operaciones from './Operaciones.js'
 
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 
         <div className="App d-flex justify-content-center align-items-center">
 
-            <Factorial/>
+            <Operaciones/>
 
         </div>
     );

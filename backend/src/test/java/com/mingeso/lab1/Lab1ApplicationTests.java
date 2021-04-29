@@ -1,10 +1,10 @@
-package com.mingeso.evaluacion1;
+package com.mingeso.lab1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Evaluacion1ApplicationTests {
+class Lab1ApplicationTests {
 
 	@Test
 	void contextLoads() {

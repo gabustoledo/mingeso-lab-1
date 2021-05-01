@@ -1,5 +1,5 @@
 
-package com.mingeso.lab1.testSuma;
+package com.mingeso.lab1.testOperaciones;
 
 
 import com.mingeso.lab1.Lab1Application;

@@ -1,4 +1,4 @@
-package com.mingeso.lab1.testSuma;
+package com.mingeso.lab1.testOperaciones;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-public class TestSuma extends AbstractTest {
+public class TestOperaciones extends AbstractTest {
     @Override
     @Before
     public void setUp() {
@@ -20,7 +20,7 @@ public class TestSuma extends AbstractTest {
 
     private final Gson gson;
 
-    TestSuma(){
+    TestOperaciones(){
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -64,5 +64,47 @@ public class TestSuma extends AbstractTest {
         Operaciones sumaFinal = gson.fromJson(sumaResultado, Operaciones.class);
 
         assertEquals(300, sumaFinal.getResultado());
+    }
+
+    @Test
+    public void restaTest1() throws Exception {
+        Operaciones resta = new Operaciones();
+		resta.setPrimerNumero(50);
+		resta.setSegundoNumero(25);
+
+        String inputJson = gson.toJson(resta);
+
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/operaciones/resta")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+
+        String restaResultado = mvcResult.getResponse().getContentAsString();
+        Operaciones restaFinal = gson.fromJson(restaResultado, Operaciones.class);
+
+        assertEquals(25, restaFinal.getResultado());
+    }
+
+    @Test
+    public void restaTest2() throws Exception {
+        Operaciones resta = new Operaciones();
+		resta.setPrimerNumero(20);
+		resta.setSegundoNumero(14);
+
+        String inputJson = gson.toJson(resta);
+
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/operaciones/resta")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+
+        String restaResultado = mvcResult.getResponse().getContentAsString();
+        Operaciones restaFinal = gson.fromJson(restaResultado, Operaciones.class);
+
+        assertEquals(6, restaFinal.getResultado());
     }
 }

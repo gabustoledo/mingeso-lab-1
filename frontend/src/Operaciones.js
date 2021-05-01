@@ -5,33 +5,60 @@ class Operaciones extends Component {
     constructor(){
         super();
         this.state = {
-            primerNumero: "",
-            segundoNumero: "",
-            resultado: ""
+            primerNumeroSuma: "",
+            segundoNumeroSuma: "",
+            resultadoSuma: "",
+            primerNumeroResta: "",
+            segundoNumeroResta: "",
+            resultadoResta: ""
         };
     }
 
 
-    setPrimerNumero = e =>{
+    setPrimerNumeroSuma = e =>{
         const { value } = e.target
         this.setState({
-            primerNumero : value
+            primerNumeroSuma : value
         })
     }
 
-    setSegundoNumero = e =>{
+    setSegundoNumeroSuma = e =>{
         const { value } = e.target
         this.setState({
-            segundoNumero : value
+            segundoNumeroSuma : value
         })
     }
 
-    handleSumbit = e =>{
+    setPrimerNumeroResta = e =>{
+        const { value } = e.target
+        this.setState({
+            primerNumeroResta : value
+        })
+    }
+
+    setSegundoNumeroResta = e =>{
+        const { value } = e.target
+        this.setState({
+            segundoNumeroResta : value
+        })
+    }
+
+    handleSumbitSuma = e =>{
         e.preventDefault();
         axios
-            .post("http://localhost:8080/operaciones/suma", {primerNumero: this.state.primerNumero,segundoNumero: this.state.segundoNumero})
+            .post("http://localhost:8080/operaciones/suma", {primerNumero: this.state.primerNumeroSuma,segundoNumero: this.state.segundoNumeroSuma})
             .then((response) => {
-                this.setState({resultado: response.data.resultado})
+                this.setState({resultadoSuma: response.data.resultado})
+            })
+            .catch(err => console.log(err));
+    }
+
+    handleSumbitResta = e =>{
+        e.preventDefault();
+        axios
+            .post("http://localhost:8080/operaciones/resta", {primerNumero: this.state.primerNumeroResta,segundoNumero: this.state.segundoNumeroResta})
+            .then((response) => {
+                this.setState({resultadoResta: response.data.resultado})
             })
             .catch(err => console.log(err));
     }
@@ -39,28 +66,56 @@ class Operaciones extends Component {
     render() {
         return(
 
-            <div className="factorial">
+            <div>
+
+            <div className="suma">
                 <div className="card" style={{ maxWidth: '22rem'}}>
-                    <div className="card-body" onSubmit={this.handleSumbit} >
+                    <div className="card-body" onSubmit={this.handleSumbitSuma} >
                         <h5 className="card-tittle text-center mb-4"> Suma </h5>
                         <form>
                             <div className="form-group">
                                 <label> Primer Numero </label>
-                                <input className="form-control" placeholder="Numero" defaultValue={this.state.primerNumero} onChange={this.setPrimerNumero} />
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.primerNumeroSuma} onChange={this.setPrimerNumeroSuma} />
                             </div>
                             <div className="form-group">
                                 <label> Segundo Numero </label>
-                                <input className="form-control" placeholder="Numero" defaultValue={this.state.segundoNumero} onChange={this.setSegundoNumero} />
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.segundoNumeroSuma} onChange={this.setSegundoNumeroSuma} />
                             </div>
                             <div className ="form-group">
                                 <label> Resultado </label>  
-                                <input className="form-control" placeholder="Resultado" defaultValue={this.state.resultado} disabled />
+                                <input className="form-control" placeholder="Resultado" defaultValue={this.state.resultadoSuma} disabled />
                             </div>
 
-                            <button type="submit" className="btn btn-primary"> Calcular </button>
+                            <button type="submit" className="btn btn-primary"> Calcular Suma </button>
                         </form>          
                     </div>     
                 </div>
+            </div>
+
+            <div className="resta">
+                <div className="card" style={{ maxWidth: '22rem'}}>
+                    <div className="card-body" onSubmit={this.handleSumbitResta} >
+                        <h5 className="card-tittle text-center mb-4"> Resta </h5>
+                        <form>
+                            <div className="form-group">
+                                <label> Primer Numero </label>
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.primerNumeroResta} onChange={this.setPrimerNumeroResta} />
+                            </div>
+                            <div className="form-group">
+                                <label> Segundo Numero </label>
+                                <input className="form-control" placeholder="Numero" defaultValue={this.state.segundoNumeroResta} onChange={this.setSegundoNumeroResta} />
+                            </div>
+                            <div className ="form-group">
+                                <label> Resultado </label>  
+                                <input className="form-control" placeholder="Resultado" defaultValue={this.state.resultadoResta} disabled />
+                            </div>
+
+                            <button type="submit" className="btn btn-primary"> Calcular Resta </button>
+                        </form>          
+                    </div>     
+                </div>
+            </div>
+
             </div>
         );
     }

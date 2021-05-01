@@ -5,12 +5,6 @@ public class Operaciones {
     public int segundoNumero;
     public int resultado;
 
-    public Operaciones(int primerNumero, int segundoNumero, int resultado) {
-        this.primerNumero = primerNumero;
-        this.segundoNumero = segundoNumero;
-        this.resultado = resultado;
-    }
-
     public int getPrimerNumero() {
         return primerNumero;
     }

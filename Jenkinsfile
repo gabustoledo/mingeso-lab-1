@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     tools{
-        gradle 'gradle-6.5.1'
+        gradle 'gradle-7.0'
     }
+
     stages {
         stage('Build') {
             steps {
@@ -12,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing with Junit...'
                 sh './gradlew -v'
 
             }

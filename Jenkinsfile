@@ -14,7 +14,9 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing with Junit...'
-                sh 'gradle -v'
+                dir("/var/lib/jenkins/workspace/Mingeso/backend") {
+                    sh 'gradle test'
+                }
 
             }
         }

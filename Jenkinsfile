@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools{
-        gradle 'gradle-6.5.1'
+        gradle 'gradle-6.8.3'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Testing with Junit...'
                 dir("/var/lib/jenkins/workspace/Mingeso/backend") {
-                    sh 'gradle test'
+                    sh './gradlew test'
                 }
 
             }

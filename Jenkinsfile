@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools{
-        gradle 'gradle-7.0'
+        gradle 'gradle-6.5.1'
     }
 
     stages {
@@ -11,7 +11,13 @@ pipeline {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage('SonarQube'){
+            steps{
+                echo 'Analyze with SonarQube..'
+
+            }
+        }
+        stage('Junit') {
             steps {
                 echo 'Testing with Junit...'
                 dir("/var/lib/jenkins/workspace/Mingeso/backend") {

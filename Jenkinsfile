@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing with Junit...'
-                sh './gradlew -v'
+                sh './gradle -v'
 
             }
         }

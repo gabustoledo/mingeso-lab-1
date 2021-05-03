@@ -17,16 +17,21 @@ pipeline {
 
             }
         }
-        stage('Junit') {
-            steps {
-                echo 'Testing with Junit...'
-                dir("/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test") {
-		    sh 'touch *.xml'
-                    sh 'junit *.xml'
-                }
-
-            }
-        }
+stage('JUnit'){
+		steps {
+			dir("/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test") {
+				sh 'touch hola.xml'
+				sh 'rm *.xml'
+			}
+			catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 			dir("/var/lib/jenkins/workspace/Mingeso/backend") {
+						sh './gradlew test'
+					}
+                		}
+			dir("/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test") {
+				junit '*.xml'
+			}
+		}
         stage('Deploy') {
             steps {
                 echo 'Deploying....'

@@ -15,6 +15,7 @@ pipeline {
 
         stage('SonarQube'){
             steps{
+                def scannerHome = tool 'sonarcloud';
                 echo 'Analyze with SonarQube..'
                 dir("/var/lib/jenkins/workspace/Mingeso/backend") {
                     withSonarQubeEnv('sonarcloud'){

@@ -3,7 +3,7 @@ pipeline {
 
     tools{
         gradle 'gradle-6.8.3'
-        
+        sonarqube 'sonarqube'
     }
 
     stages {

@@ -3,7 +3,7 @@ pipeline {
 
     tools{
         gradle 'gradle-6.8.3'
-        hudson.plugins.sonar.SonarRunnerInstallation 'sonarqube'
+        
     }
 
     stages {
@@ -16,12 +16,15 @@ pipeline {
 
         stage('SonarQube'){
             steps{
-                withSonarQubeEnv('sonarqube') { 
-                   sh './gradlew sonarqube'
-                }
-             }
-         }
-        
+                dir("/var/lib/jenkins/workspace/Mingeso/backend"){
+                        withSonarQubeEnv(){
+                            sh 'chmod +x ./gradlew'
+                            sh './gradlew sonarqube'
+                        }
+                    }
+                
+            }
+        }
 
 	    stage('JUnit'){
 		    steps {

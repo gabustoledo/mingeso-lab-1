@@ -18,6 +18,7 @@ pipeline {
                 echo 'Analyze with SonarQube..'
                 dir("/var/lib/jenkins/workspace/Mingeso") {
                     withSonarQubeEnv('sonarcloud'){
+                        sh 'chmod +x ./gradlew'
 	                    sh "./gradlew sonarqube"
                     }
 				}

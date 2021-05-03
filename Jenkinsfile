@@ -17,7 +17,7 @@ pipeline {
 
             }
         }
-stage('JUnit'){
+	stage('JUnit'){
 		steps {
 			dir("/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test") {
 				sh 'touch hola.xml'
@@ -32,6 +32,7 @@ stage('JUnit'){
 				junit '*.xml'
 			}
 		}
+	}
         stage('Deploy') {
             steps {
                 echo 'Deploying....'

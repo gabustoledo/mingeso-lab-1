@@ -3,7 +3,6 @@ pipeline {
 
     tools{
         gradle 'gradle-6.8.3'
-        hudson.plugins.sonar.SonarRunnerInstallation 'sonarcloud'
     }
 
     stages {

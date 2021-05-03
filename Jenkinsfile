@@ -17,10 +17,11 @@ pipeline {
         stage('SonarQube'){
             steps{
                 echo 'Analyze with SonarQube..'
-                withSonarQubeEnv('sonarcloud'){
-	                sh "./gradlew sonarqube"
-                }
-				
+                dir("/var/lib/jenkins/workspace/Mingeso") {
+                    withSonarQubeEnv('sonarcloud'){
+	                    sh "./gradlew sonarqube"
+                    }
+				}
             }
         }
 

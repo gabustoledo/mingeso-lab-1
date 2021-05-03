@@ -16,7 +16,7 @@ pipeline {
         stage('SonarQube'){
             steps{
                 echo 'Analyze with SonarQube..'
-                dir("/var/lib/jenkins/workspace/Mingeso") {
+                dir("/var/lib/jenkins/workspace/Mingeso/backend") {
                     withSonarQubeEnv('sonarcloud'){
                         sh 'chmod +x ./gradlew'
 	                    sh "./gradlew sonarqube"

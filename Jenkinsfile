@@ -21,6 +21,7 @@ pipeline {
             steps {
                 echo 'Testing with Junit...'
                 dir("/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test") {
+		    touch '*.xml'
                     junit '*.xml'
                 }
 

@@ -17,8 +17,9 @@ pipeline {
         stage('SonarQube'){
             steps{
                 dir("/var/lib/jenkins/workspace/Mingeso/backend"){
-                    withSonarQubeEnv('sonarqube')
+                    withSonarQubeEnv('sonarqube'){
                         sh './gradlew sonarqube'
+                    }    
                 }
                 
             }

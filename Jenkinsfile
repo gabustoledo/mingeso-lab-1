@@ -27,10 +27,16 @@ pipeline {
                 		}
 		}
 	}
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+    stage('Deploy') {
+        steps {
+            echo 'Deploying....'
             }
+        }
+    }
+
+    post {
+        always {
+            junit '/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test/*.xml'
         }
     }
 }

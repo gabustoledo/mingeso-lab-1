@@ -19,7 +19,7 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/Mingeso/backend"){
                     withSonarQubeEnv('sonarqube'){
                         sh 'chmod +wx ./gradlew'
-                        sh 'sudo su ./gradlew sonarqube'
+                        sh 'chmod +wx ./gradlew sonarqube'
                     }    
                 }
                 

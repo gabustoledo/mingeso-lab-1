@@ -6,36 +6,41 @@ pipeline {
     }
 
     stages {
+        
         stage('Build') {
             steps {
                 echo 'Building..'
             }
         }
+
         stage('SonarQube'){
             steps{
                 echo 'Analyze with SonarQube..'
-                withSonarQubeEnv('SonarQube'){
-	                sh "./gradlew sonarqube"
-                }
+                dir("/var/lib/jenkins/workspace/Mingeso/backend") {
+                    withSonarQubeEnv('SonarQube'){
+                        sh 'chmod +x ./gradlew'
+	                    sh "./gradlew sonarqube"
+                    }
+				}
+            }
+        }
 
+	    stage('JUnit'){
+		    steps {
+			    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 		dir("/var/lib/jenkins/workspace/Mingeso/backend") {
+						    sh 'chmod +x ./gradlew'
+                    		sh './gradlew test'
+					    }
+                	}
+		    }
+	    }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                }
             }
         }
-	stage('JUnit'){
-		steps {
-			catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                 			dir("/var/lib/jenkins/workspace/Mingeso/backend") {
-						sh 'chmod +x ./gradlew'
-                    				sh './gradlew test'
-					}
-                		}
-		}
-	}
-    stage('Deploy') {
-        steps {
-            echo 'Deploying....'
-            }
-        }
-    }
 
     post {
         always {

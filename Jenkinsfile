@@ -3,6 +3,7 @@ pipeline {
 
     tools{
         gradle 'gradle-6.8.3'
+        
     }
 
     stages {
@@ -16,9 +17,8 @@ pipeline {
         stage('SonarQube'){
             steps{
                 echo 'Analyze with SonarQube..'
-                dir("/var/lib/jenkins/workspace/Mingeso/backend") {
-                    withSonarQubeEnv('SonarQube'){
-                        sh 'chmod +x ./gradlew'
+                dir("/var/lib/jenkins/workspace/Mingeso") {
+                    withSonarQubeEnv('sonarcloud'){
 	                    sh "./gradlew sonarqube"
                     }
 				}

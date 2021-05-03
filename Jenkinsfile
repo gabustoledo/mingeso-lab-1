@@ -36,7 +36,7 @@ pipeline {
 
     post {
         always {
-            junit '/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test/*.xml'
+            junit '/var/lib/jenkins/workspace/Mingeso/backend/build/test-results/test/TEST-com.mingeso.lab1.testOperaciones.TestOperaciones.xml'
         }
     }
 }

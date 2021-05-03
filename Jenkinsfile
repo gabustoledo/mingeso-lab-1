@@ -18,8 +18,8 @@ pipeline {
             steps{
                 dir("/var/lib/jenkins/workspace/Mingeso/backend"){
                     withSonarQubeEnv('sonarqube'){
-                        sh 'chmod +wx ./gradlew'
-                        sh 'chmod +wx ./gradlew sonarqube'
+                        sh 'chmod +x ./gradlew'
+                        sh 'chmod +w ./gradlew sonarqube'
                     }    
                 }
                 

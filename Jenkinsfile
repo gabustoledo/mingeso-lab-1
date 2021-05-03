@@ -3,7 +3,7 @@ pipeline {
 
     tools{
         gradle 'gradle-6.8.3'
-        hudson.plugins.sonar.SonarRunnerInstallation 'SONARQUBE'
+        hudson.plugins.sonar.SonarRunnerInstallation 'sonarqube'
     }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('SonarQube'){
             steps{
-                withSonarQubeEnv('SONARQUBE') { 
+                withSonarQubeEnv('sonarqube') { 
                    sh './gradlew sonarqube'
                 }
              }
